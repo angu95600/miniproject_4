@@ -1,0 +1,190 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<style>
+    *{
+        margin: 0;
+        
+    }
+    body{
+        height: 100vh;
+        width: 100vw;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        flex-direction: column;
+        background-color: rgba(59, 70, 100, 1);
+
+
+    }
+    .upperbody{
+        height: 5rem;
+        width: 45rem;
+        background-color:rgba(24, 31, 50, 1);
+        margin-bottom: 2rem;
+        border-radius: 6px;
+    }
+    .lowbody{
+        display: flex;
+        height: 27rem;
+        width: 45rem;
+        background-color: rgba(37, 45, 68, 1);
+        border-radius: 6px;
+        /* flex-wrap: wrap; */
+        flex-direction: column;
+    }
+    .item{
+        display: flex;
+        height:3rem;
+        width: 8rem;
+        background-color: white;
+        /* padding: 1rem; */
+        margin: 1rem;
+       border-radius: 6px;
+       align-items: center;
+       justify-content: center;
+       font-size: larger;
+       font-weight: bolder;
+       
+    }
+    .item:hover{
+        cursor: pointer;
+        background-color: rgb(237, 235, 235);
+    }
+    .firstrow{
+        display: flex;
+        height: 4rem;
+        width: 45rem;
+        margin-top: 1rem;
+        justify-content: center;
+        align-items: center;
+    }
+    .item1,.item2{
+        display: flex;
+        height: 3rem;
+        width: 18rem;
+        background-color: white;
+        margin: 1rem;
+        border-radius: 6px;
+         align-items: center;
+       justify-content: center;
+       font-size: larger;
+       font-weight: bolder;
+    }
+    #del{
+        background-color: rgba(59, 70, 100, 1);
+        color: white;
+    }
+    #res{
+       background-color:rgba(59, 70, 100, 1) ;
+       color: white;
+    }
+    #equal{
+        background-color: red;
+        color: white;
+    }
+    .item1:hover{
+        cursor: pointer;
+        
+    }
+    .item2:hover{
+        cursor: pointer;
+    }
+    .upperbody{
+        font-size: xx-large;
+        color: whitesmoke;
+    }
+</style>
+
+<body>
+   <input id="input" class="upperbody"type="text">
+    <div class="lowbody">
+        <div class="firstrow">
+            <button class="item">1</button>
+            <button class="item">2</button>
+            <button class="item">3</button>
+            <button class="item"id="del">DEL</button>
+        </div>
+        <div class="firstrow">
+            <button class="item">4</button>
+            <button class="item">5</button>
+            <button class="item">6</button>
+            <button class="item">+</button>
+        </div>
+        <div class="firstrow">
+            <button class="item">7</button>
+            <button class="item">8</button>
+            <button class="item">9</button>
+            <button class="item">-</button>
+        </div>
+        <div class="firstrow">
+            <button class="item">.</button>
+            <button class="item">0</button>
+            <button class="item">/</button>
+            <button class="item">*</button>
+        </div>
+        <div class="firstrow">
+            <button class="item1"id="res">RESET</button>
+            <button class="item2" id="equal">=</button>
+            
+        </div>
+    </div>
+
+    <script>
+        const buttons = document.querySelectorAll('button');
+        const inp = document.getElementById('input')
+        let result = 0;
+        for (let btn of buttons) {
+            btn.addEventListener('click', (e) => {
+
+                let input = e.target.innerText;
+                let val = inp.value;
+                if (val === "error") {
+                    val = '';
+                }
+                if (input === '*') {
+                    val += '*';
+                    inp.value = val;
+                }
+                else if (input === '/') {
+                    val += '/';
+                    inp.value = val;
+                }
+                else if (input === '.') {
+                    val += '.'
+                    inp.value = val;
+                }
+                else if (input === '+') {
+                    
+                    val += '+';
+                    inp.value = val;
+                }
+                else if (input === '-') {
+                    val += '-';
+                    inp.value = val;
+                }
+                else if(input==='DEL'){
+                    val=val.substring(0,val.length-1);
+                    inp.value=val;
+                }
+                else if (input === '=') {
+                    try {
+                        result = eval(val);
+                        inp.value = result;
+                    } catch (error) {
+                        inp.value = "error";
+                    }
+                }
+                else {
+                    val += input;
+                    inp.value = val;
+                }
+            })
+        }
+    </script>
+</body>
+</html>
